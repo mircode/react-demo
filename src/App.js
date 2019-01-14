@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
+// 表格组件
+class Table extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+          <table>
+            <tbody>
+              <tr>
+                {this.props.headers.map((cell) =>  <th> {cell} </th> )}
+               </tr>
+
+              {this.props.rows.map((row) => 
+                <tr>{row.map((cell) => (<td>{cell}</td>))} </tr>
+              )}
+            </tbody>
+          </table>
+    
+    );
+  }
+}
+
+// 应用入口
+class App extends Component {
+  render() {
+    const headers = ['姓名', '职业'];
+    const rows = [
+      ['mir', '程序员'],
+      ['wgx', '程序员']
+    ];
+    return (
+        <Table rows={rows} headers={headers} />
     );
   }
 }
