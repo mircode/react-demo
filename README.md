@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 一、环境初始化
 
-## Available Scripts
+> 菜鸟教程：http://www.runoob.com/react/react-install.html
 
-In the project directory, you can run:
+```shell
+# 配置npm镜像库
+sudo npm install -g cnpm --registry=https://registry.npm.taobao.org
+sudo npm config set registry https://registry.npm.taobao.org
 
-### `npm start`
+# 安装create-react-app模块，快速快速初始化项目结构
+sudo cnpm install -g create-react-app
+sudo create-react-app my-app
+sudo cd my-app/
+sudo npm start
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 访问如下链接，说明环境已经已经启动
+# 链路测试：http://localhost:3000/
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+#### 二、表格组件开发
 
-### `npm test`
+> 说明：直接用VSCode打开对应文件夹和目录，可以安装VSCode对应的React插件，方便开发。
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+import React, { Component } from 'react';
+import './App.css';
 
-### `npm run build`
+// 表格组件
+class Table extends React.Component {
+  render() {
+    return (
+          <table>
+            <tbody>
+              <tr>
+                {this.props.headers.map((cell) =>  <th> {cell} </th> )}
+               </tr>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+              {this.props.rows.map((row) => 
+                <tr>{row.map((cell) => (<td>{cell}</td>))} </tr>
+              )}
+            </tbody>
+          </table>
+    
+    );
+  }
+}
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+// 应用入口
+class App extends Component {
+  render() {
+    const headers = ['姓名', '职业'];
+    const rows = [
+      ['mir', '程序员'],
+      ['wgx', '程序员']
+    ];
+    return (
+        <Table rows={rows} headers={headers} />
+    );
+  }
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export default App;
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
